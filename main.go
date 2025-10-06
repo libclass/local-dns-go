@@ -1,17 +1,14 @@
 package main
 
 import (
-	"context"
 	"crypto/tls"
 	"database/sql"
 	"encoding/json"
 	"fmt"
 	"html/template"
 	"log"
-	"net"
 	"net/http"
 	"os"
-	"strconv"
 	"strings"
 	"sync"
 	"time"

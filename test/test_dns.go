@@ -1,6 +1,7 @@
 package test
 
 import (
+	"net"
 	"testing"
 
 	"github.com/miekg/dns"
@@ -182,4 +183,5 @@ func isValidDoTServer(server string) bool {
 	}
 	return host != "" && port == "853"
 }
+
 
