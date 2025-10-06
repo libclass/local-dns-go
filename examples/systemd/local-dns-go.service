@@ -1,0 +1,38 @@
+[Unit]
+Description=Local-DNS-Go
+Documentation=https://github.com/libclass/local-dns-go
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=localdnsuser
+Group=localdnsuser
+ExecStart=/usr/local/bin/local-dns-go -config /etc/local-dns-go/config.json
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=30
+
+# Security settings
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/lib/local-dns-go /var/log/local-dns-go
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+
+# Capabilities
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=local-dns-go
+
+[Install]
+WantedBy=multi-user.target
+
