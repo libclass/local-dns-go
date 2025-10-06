@@ -205,6 +205,56 @@ See [API Documentation](docs/API.md) for detailed information.
 
 See [Configuration Guide](docs/CONFIGURATION.md) for complete documentation.
 
+## Development Setup
+
+### Prerequisites
+
+- Go 1.21 or later
+- Git
+
+### Initial Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/libclass/local-dns-go.git
+cd local-dns-go
+
+# Run the setup script
+chmod +x scripts/setup.sh
+./scripts/setup.sh
+
+# Or manually:
+go mod init github.com/libclass/local-dns-go
+go mod tidy
+go build -o local-dns-go .
+```
+
+### Running Tests
+
+```bash
+# Run all tests
+go test ./...
+
+# Run tests with coverage
+go test -cover ./...
+
+# Run specific test files
+go test ./test/...
+```
+
+## Troubleshooting
+
+If you encounter dependency issues:
+
+```bash
+# Clean the module cache
+go clean -modcache
+
+# Re-download dependencies
+go mod tidy
+go mod download
+```
+
 ## Development
 
 ### Building from Source
